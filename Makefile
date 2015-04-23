@@ -1,13 +1,15 @@
-getOpcode: getOpcode.o
-	$(CC) -o main getOpcode.o
+CC=gcc
+CFLAGS :=  $(CFLAGS) -Wall -g -Werror
 
-run:
-	./getOpcode
+Lab1: Lab1.o main.o
+	$(CC) $(CFLAGS) Lab1.o main.o -lm -o Lab1
 
-test: test.o getOpcode.o
-	$(CC) -o test test.o getOpcode.o
+test: Lab1.o test.o
+	$(CC) $(CFLAGS) Lab1.o test.o -lm -o test
 	./test
-	rm -f test
+
+run: Lab1
+	./Lab1
 
 clean:
-	rm -f getOpcode *.o test
+	rm -f Lab1 test *.o
